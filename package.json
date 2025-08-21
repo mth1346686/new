@@ -2,10 +2,10 @@
   "name": "nodejs-ecommerce-api-v1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start:dev": " nodemon server.js",
-    "start": "NODE_ENV=production node server.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -45,7 +45,6 @@
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1"
   },
-  "engines": {
-    "node": "^16.13.0"
+  "engines": {"node": "18.x"
   }
 }
