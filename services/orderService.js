@@ -149,6 +149,9 @@ exports.checkoutSession = asyncHandler(async (req, res, next) => {
             unit_amount: cartPrice * 100,
            
         },
+          product_data: {
+          name: cart.user.name, // أو ممكن اسم المنتج/المجموعة
+        },
         quantity: 1,
       },
     ],
