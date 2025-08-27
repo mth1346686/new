@@ -169,7 +169,7 @@ exports.checkoutSession = asyncHandler(async (req, res, next) => {
 });
 
 const createCardOrder = async (session) => {
-  console.log('Creating order from stripe session');
+  console.log(session);
   const cartId = session.client_reference_id;
   const shippingAddress = session.metadata;
   const oderPrice = session.amount_total / 100;
