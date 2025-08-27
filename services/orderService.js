@@ -147,11 +147,12 @@ exports.checkoutSession = asyncHandler(async (req, res, next) => {
         price_data: {
             currency: 'egp',
             unit_amount: cartPrice * 100,
-           
-        },
-          product_data: {
+            product_data: {
           name: "product", // أو ممكن اسم المنتج/المجموعة
         },
+           
+        },
+       
         quantity: 1,
       },
     ],
