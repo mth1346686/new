@@ -218,10 +218,12 @@ exports.webhookCheckout = asyncHandler(async (req, res, next) => {
       sig,
       process.env.STRIPE_WEBHOOK_SECRET
     );
+    console.log('Secret from ENV:', process.env.STRIPE_WEBHOOK_SECRET);
+
   } catch (err) {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
-  if (event.type === 'payment_intent.succeeded') {
+  if (event.type === 'checkout.session.completed') {
     //  Create order
     console.log('Checkout session completed');
     createCardOrder(event.data.object);

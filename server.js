@@ -23,6 +23,11 @@ dbConnection();
 
 // express app
 const app = express();
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  webhookCheckout
+);
 app.use(express.json({ limit: '1000kb' }));
 
 // Enable other domains to access your application
@@ -33,11 +38,6 @@ app.options('*', cors());
 app.use(compression());
 
 // Checkout webhook
-app.post(
-  '/webhook-checkout',
-  express.raw({ type: 'application/json' }),
-  webhookCheckout
-);
 
 // Middlewares
 app.use(express.static(path.join(__dirname, 'uploads')));
