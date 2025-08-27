@@ -150,7 +150,7 @@ exports.checkoutSession = asyncHandler(async (req, res, next) => {
            
         },
           product_data: {
-          name: cart.user.name, // أو ممكن اسم المنتج/المجموعة
+          name: "product", // أو ممكن اسم المنتج/المجموعة
         },
         quantity: 1,
       },
