@@ -32,8 +32,15 @@ router
   .post(
     authService.protect,
     authService.allowedTo('admin', 'manager'),
+    (req, res, next) => {
+      console.log(req.body);
+      next();
+    },
     uploadCategoryImage,
+
     resizeImage,
+      
+
     createCategoryValidator,
     createCategory
   );

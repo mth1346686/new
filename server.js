@@ -9,6 +9,7 @@ const cors = require('cors');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 const hpp = require('hpp');
+const mongoSanitize = require('express-mongo-sanitize');
 
 const ApiError = require('./utils/apiError');
 const globalError = require('./middlewares/errorMiddleware');
@@ -22,6 +23,7 @@ dbConnection();
 
 // express app
 const app = express();
+app.use(express.json({ limit: '1000kb' }));
 
 // Enable other domains to access your application
 app.use(cors());
@@ -38,13 +40,13 @@ app.post(
 );
 
 // Middlewares
-app.use(express.json({ limit: '20kb' }));
 app.use(express.static(path.join(__dirname, 'uploads')));
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
   console.log(`mode: ${process.env.NODE_ENV}`);
 }
+app.use(mongoSanitize());
 
 // Limit each IP to 100 requests per `window` (here, per 15 minutes)
 const limiter = rateLimit({

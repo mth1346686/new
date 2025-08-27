@@ -31,9 +31,20 @@ router
   .post(
     authService.protect,
     authService.allowedTo('admin', 'manager'),
+  
+
     uploadProductImages,
+     
+
     resizeProductImages,
+     
+
     createProductValidator,
+   
+(req, res, next) => {
+      console.log(req.body);
+      next();
+    },
     createProduct
   );
 router

@@ -23,7 +23,6 @@ exports.resizeImage = asyncHandler(async (req, res, next) => {
     // Save image into our db
     req.body.image = filename;
   }
-
   next();
 });
 

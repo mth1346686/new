@@ -5,7 +5,7 @@ const Category = require('../../models/categoryModel');
 const SubCategory = require('../../models/subCategoryModel');
 
 exports.createProductValidator = [
-  check('title')
+  body('title')
     .isLength({ min: 3 })
     .withMessage('must be at least 3 chars')
     .notEmpty()
