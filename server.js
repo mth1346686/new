@@ -28,7 +28,7 @@ app.post(
   express.raw({ type: 'application/json' }),
   webhookCheckout
 );
-app.use(express.json({ limit: '1000kb' }));
+app.use(express.json({ limit: '50kb' }));
 
 // Enable other domains to access your application
 app.use(cors());
