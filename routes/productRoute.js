@@ -41,10 +41,7 @@ router
 
     createProductValidator,
    
-(req, res, next) => {
-      console.log(req.body);
-      next();
-    },
+
     createProduct
   );
 router
