@@ -135,6 +135,7 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
     .createHash('sha256')
     .update(resetCode)
     .digest('hex');
+    console.log("hashed",hashedResetCode);
 
   // Save hashed password reset code into db
   user.passwordResetCode = hashedResetCode;
