@@ -23,6 +23,13 @@ const sendEmail = async (options) => {
 
   // 3) Send email
   await transporter.sendMail(mailOpts);
+  transporter.verify((error, success) => {
+  if (error) {
+    console.log("SMTP Error:", error);
+  } else {
+    console.log("SMTP is ready to send messages");
+  }
+});
 };
 
 module.exports = sendEmail;
