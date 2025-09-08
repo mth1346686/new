@@ -3,15 +3,13 @@ const nodemailer = require('nodemailer');
 // Nodemailer
 const sendEmail = async (options) => {
   // 1) Create transporter ( service that will send email like "gmail","Mailgun", "mialtrap", sendGrid)
-  const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT, // if secure false port = 587, if true port= 465
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASSWORD,
-    },
-  });
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER, // إيميلك
+    pass: process.env.EMAIL_PASSWORD, // App Password مش الباسورد العادي
+  },
+});
 
   // 2) Define email options (like from, to, subject, email content)
   const mailOpts = {
@@ -22,14 +20,13 @@ const sendEmail = async (options) => {
   };
 
   // 3) Send email
-  await transporter.sendMail(mailOpts);
-  transporter.verify((error, success) => {
-  if (error) {
-    console.log("SMTP Error:", error);
-  } else {
-    console.log("SMTP is ready to send messages");
+  try {
+    const info = await transporter.sendMail(mailOpts);
+
+    console.log("✅ Message sent: %s", info.messageId);
+  } catch (error) {
+    console.error("❌ Error:", error);
   }
-});
-};
+}
 
 module.exports = sendEmail;
